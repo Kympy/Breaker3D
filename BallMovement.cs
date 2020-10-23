@@ -31,11 +31,10 @@ public class BallMovement : MonoBehaviour
         if(firstColl == true)
         {
             incomingVector = (collisionPos - firstPos).normalized;
-            normalVector = collision.contacts[0].normal;
+            normalVector = collision.contacts[0].normal;                
             reflectVector = Vector3.Reflect(incomingVector, normalVector).normalized;
             firstPos = collisionPos;
         }
-
     }
 
     void FixedUpdate()
@@ -46,6 +45,7 @@ public class BallMovement : MonoBehaviour
 
         if (startGame == true && firstColl == false)
         {
+            this.transform.parent = null;
             this.gameObject.transform.position += new Vector3(1f, 1f, 0f).normalized * Time.deltaTime * ballSpeed;
         }
         if(firstColl == true)
